@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'dog_model.dart';
+
+
 
 
 class AddDogFormPage extends StatefulWidget {
@@ -12,6 +15,24 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+
+  void submitPup(BuildContext context) {
+    // First make sure there is some information in the form.
+    // A dog needs a name, but may be location independent,
+    // so we'll only abandon the save if there's no name.
+    if (nameController.text.isEmpty) {
+      print('Dogs need names!');
+    } else {
+      // Create a new dog with the information from the form.
+      var newDog = Dog(nameController.text, locationController.text,
+          descriptionController.text);
+      // Pop the page off the route stack and pass the new
+      // dog back to wherever this page was created.
+      Navigator.of(context).pop(newDog);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +89,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
                 child: Builder(
                   builder: (context) {
                     return RaisedButton(
-                      onPressed: () => print('PRESSED'),
+                      onPressed: () => submitPup(context),
                       color: Colors.indigoAccent,
                       child: Text('Submit Pup'),
                     );
