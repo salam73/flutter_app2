@@ -17,22 +17,31 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
   TextEditingController descriptionController = TextEditingController();
 
 
-  void submitPup(BuildContext context) {
-    // First make sure there is some information in the form.
-    // A dog needs a name, but may be location independent,
-    // so we'll only abandon the save if there's no name.
+  void submitPup(context) {
     if (nameController.text.isEmpty) {
-      print('Dogs need names!');
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.redAccent,
+          content: Text('Pups neeed names!'),
+        ),
+      );
+
+
+    }  if (locationController.text.isEmpty) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.redAccent,
+          content: Text('locationController neeed names!'),
+        ),
+      );
+
+
     } else {
-      // Create a new dog with the information from the form.
       var newDog = Dog(nameController.text, locationController.text,
           descriptionController.text);
-      // Pop the page off the route stack and pass the new
-      // dog back to wherever this page was created.
       Navigator.of(context).pop(newDog);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
