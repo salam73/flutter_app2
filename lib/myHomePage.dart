@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'dog_card.dart';
 import 'dog_model.dart';
 
 
@@ -35,19 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
         title: Text(widget.title),
       ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'this is the body',
-            ),
-
-          ],
-        ),
-      ),
+       body: Container(
+    child: DogCard(initialDoggos[1]), // New code
+    ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
