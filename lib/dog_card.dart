@@ -12,13 +12,29 @@ class DogCard extends StatefulWidget {
 }
 
 class _DogCardState extends State<DogCard> {
+  void initState() {
+    super.initState();
+    renderDogPic();
+  }
+
+// IRL, we'd want the Dog class itself to get the image
+// but this is a simpler way to explain Flutter basics
+  void renderDogPic() async {
+    // this makes the service call
+    await dog.getImageUrl();
+    // setState tells Flutter to rerender anything that's been changed.
+    // setState cannot be async, so we use a variable that can be overwritten
+    if (mounted) {
+      // Avoid calling `setState` if the widget is no longer in the widget tree.
+      setState(() {
+        renderUrl = dog.imageUrl;
+      });
+    }
+  }
+
   Dog dog;
 
   _DogCardState(this.dog);
-
-
-
-
 
   String renderUrl;
 
@@ -48,9 +64,6 @@ class _DogCardState extends State<DogCard> {
       ),
     );
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
