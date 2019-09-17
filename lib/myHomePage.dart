@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.black87,
+        //backgroundColor: Colors.black87,
 
         actions: [
           IconButton(
@@ -71,9 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
             colors: [
               // Colors are easy thanks to Flutter's Colors class.
               Colors.indigo[800],
-              Colors.indigo[700],
               Colors.indigo[600],
               Colors.indigo[400],
+              Colors.indigo[100],
             ],
           ),
         ),
