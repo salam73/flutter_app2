@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'dog_card.dart';
+
 import 'dog_model.dart';
+import 'dog_list.dart';
+
 
 
 
@@ -30,16 +32,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
+        backgroundColor: Colors.black87,
       ),
-       body: Container(
-    child: DogCard(initialDoggos[1]), // New code
-    ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      body: Container(
+        // Remove the DogCard Widget.
+        // Instead, use your new DogList Class,
+        // Pass in the mock data from the list above.
+        child: Center( // Changed code
+          child: DogList(initialDoggos), // Changed code
+        ),
+      ),
     );
   }
 }
