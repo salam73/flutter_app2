@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
+
+
 class AddDogFormPage extends StatefulWidget {
   @override
   _AddDogFormPageState createState() => _AddDogFormPageState();
 }
 
 class _AddDogFormPageState extends State<AddDogFormPage> {
+  // One TextEditingController for each form input:
+  TextEditingController nameController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    // new page needs scaffolding!
     return Scaffold(
       appBar: AppBar(
         title: Text('Add a new Dog'),
@@ -25,10 +31,16 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
-                // Text Field is the basic input widget for Flutter.
-                // It comes built in with a ton of great UI and
-                // functionality, such as the labelText field you see below.
                 child: TextField(
+                  // Tell your textfield which controller it owns
+                    controller: nameController,
+                    // Every single time the text changes in a
+                    // TextField, this onChanged callback is called
+                    // and it passes in the value.
+                    //
+                    // Set the text of your controller to
+                    // to the next value.
+                    onChanged: (v) => nameController.text = v,
                     decoration: InputDecoration(
                       labelText: 'Name the Pup',
                     )),
@@ -36,32 +48,26 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: TextField(
+                    controller: locationController,
+                    onChanged: (v) => locationController.text = v,
                     decoration: InputDecoration(
-                      labelText: "Pup's location",
+                      labelText: "Pups location",
                     )),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'All about the pup',
-                  ),
-                ),
+                    controller: descriptionController,
+                    onChanged: (v) => descriptionController.text = v,
+                    decoration: InputDecoration(
+                      labelText: 'All about the pup',
+                    )),
               ),
-              // A Strange situation.
-              // A piece of the app that you'll add in the next
-              // section *needs* to know its context,
-              // and the easiest way to pass a context is to
-              // use a builder method. So I've wrapped
-              // this button in a Builder as a sort of 'hack'.
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Builder(
                   builder: (context) {
-                    // The basic Material Design action button.
                     return RaisedButton(
-                      // If onPressed is null, the button is disabled
-                      // this is my goto temporary callback.
                       onPressed: () => print('PRESSED'),
                       color: Colors.indigoAccent,
                       child: Text('Submit Pup'),
